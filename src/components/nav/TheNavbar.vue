@@ -2,13 +2,13 @@
   <header>
     <nav>
       <ul>
-       <!--  <li>
-          <router-link to="/add">Add-Tasks</router-link> 
-        </li> -->
+       <li>
+          <router-link to="/add">Add-Tasks</router-link>
+       </li>
         <li>
            <router-link to="/tasks">Tasks</router-link>
         </li>
-        <router-view></router-view>
+        
       </ul>
     </nav>
   </header>

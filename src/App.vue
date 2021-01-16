@@ -8,6 +8,7 @@
 
 <script>
 import TheNavbar from './components/nav/TheNavbar.vue'
+
 export default{
 components:{
   TheNavbar
@@ -29,9 +30,10 @@ provide(){
 }
 </script>
 <style>
-body{
-  background-image:linear-gradient(to right,black,red);
-  color:white;
+body,html{
+  border:0;
+  padding:0;
+  margin: 0;
 }
 </style>
 
