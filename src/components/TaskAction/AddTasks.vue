@@ -16,9 +16,8 @@
 </base-card>
 </template>
 <script>
-import BaseButton from './UI/BaseButton.vue'
+
 export default {
-  components: { BaseButton },
     inject:['tasks'],
     data(){
         return {

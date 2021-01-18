@@ -35,5 +35,20 @@ body,html{
   padding:0;
   margin: 0;
 }
+.form-control{
+    display:flex;
+    align-items: center;
+    justify-content: right;
+    padding:5px;
+}
+.input{
+    padding:5px;
+    margin-left:5px;
+    flex-grow: 1;
+    border: 2px solid #eee;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+}
+
+
 </style>
 

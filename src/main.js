@@ -1,10 +1,11 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import {createRouter,createWebHistory} from 'vue-router'
-import TaskList from './components/TaskList.vue'
-import AddTasks from './components/AddTasks.vue'
+import TaskList from './components/TaskAction/TaskList.vue'
+import AddTasks from './components/TaskAction/AddTasks.vue'
 import BaseButton from './components/UI/BaseButton.vue'
 import BaseCard from './components/UI/BaseCard.vue'
+import EditTask from './components/TaskAction/EditTask.vue'
 
 const app=createApp(App)
 
@@ -15,7 +16,9 @@ const router=createRouter({
     history:createWebHistory(),
     routes:[
         {path:'/',redirect:'/tasks',component:TaskList},
-        {path:'/tasks',component:TaskList},
+        {path:'/tasks',component:TaskList,children:[
+            {path:':id',component:EditTask,props:true}
+        ]},
         {path:'/add',component:AddTasks}
     ]
 })
