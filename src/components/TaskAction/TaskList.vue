@@ -2,7 +2,6 @@
 <div v-for="task in tasks" :key="task.taskId">
    
     <base-card>
-    <!-- <router-view></router-view> -->
     <edit-task v-if="task.taskId===editId"
      :taskId="task.taskId"
      :taskName="task.taskName"
@@ -15,8 +14,8 @@
     <div v-else>
     <h3>{{task.taskName}}</h3>
     <p>{{task.desc}}</p>
-    <!-- <router-link :to="'/tasks/'+task.taskId">Update</router-link> -->
-    <base-button @click="editTask(task.taskId)"> Edit</base-button>
+    <base-button @click="editTask(task.taskId)"> Edit</base-button>\
+    <base-button @click="deleteTask(task.taskId)">Delete</base-button>
     </div>
     </base-card>
 </div>
@@ -39,17 +38,16 @@ export default {
     methods:{
        editTask(id){
            this.editId=id
-         //  this.$route.push(`/task/${id}`)
        },
        clearEditTask(){
            this.editId='';
+       },
+       deleteTask(id){
+           const idx=this.tasks.findIndex((task)=>task.taskId===id)
+           this.tasks.splice(idx,1);
        }
     }
-    //   provide(){
-    //     return{
-    //         editId:this.editId
-    //     }
-    // }
+  
 
 }
 

@@ -45,10 +45,14 @@ body,html{
     padding:5px;
     margin-left:5px;
     flex-grow: 1;
-    border: 2px solid #eee;
-    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+     border: 2px solid #eee; 
+     box-shadow:0 0 15px 4px rgba(0,0,0,0.06); 
+     color: #eee;
+     background-color: black;
 }
-
+.input :hover{
+  cursor:-moz-grab
+}
 
 </style>
 

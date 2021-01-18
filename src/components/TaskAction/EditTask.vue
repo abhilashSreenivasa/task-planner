@@ -11,7 +11,7 @@
         </textarea>
         </div>
         <div>
-        <base-button>Edit Task</base-button>
+        <base-button>Update Task</base-button>
         </div>
     </form>
 </template>
