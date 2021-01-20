@@ -27,9 +27,7 @@ export default {
             editDesc:this.desc
         }
     },
-    beforeCreate(){
-       console.log(this.editId)
-    },
+   
     methods:{
         editTask(id){
 
@@ -38,14 +36,33 @@ export default {
                  taskName:this.editName,
                  desc:this.editDesc 
              };
-           // console.log(id)
-            const idx=this.tasks.findIndex((task)=>{
-                return task.taskId==id
-                })
-            
-           this.tasks[idx]=editedObj;
-           //console.log(this.tasks)
-           //console.log(this.editId)
+            var dbId=null;
+            var list=null;
+                 this.axios.get('https://task-planner-9bd41-default-rtdb.firebaseio.com/tasks.json')
+                    .then((response)=> {
+                        list=response.data
+                        
+                        for(let task in list){
+                        if(list[task].taskId==id)
+                            dbId=task
+                        }
+                        
+                    }).then(()=>{  //larger then starts.
+console.log("this is list:"+list);console.log("this is lbid:"+dbId)
+                                        this.axios.put(`https://task-planner-9bd41-default-rtdb.firebaseio.com/tasks.json/${list[dbId]}`, editedObj)
+                                        .then((response)=> {
+                                        console.log(response);
+                                        })
+                                        .catch((error)=> {
+                                       console.log(error);
+                     })
+                    
+
+                    })//larger then
+                    .catch((error)=> {
+                         console.log(error);
+                    })
+          // this.tasks[idx]=editedObj;
            this.$emit('clearEdit')
             this.$router.push('/tasks') 
     }

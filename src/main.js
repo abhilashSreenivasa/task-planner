@@ -6,7 +6,8 @@ import AddTasks from './components/TaskAction/AddTasks.vue'
 import BaseButton from './components/UI/BaseButton.vue'
 import BaseCard from './components/UI/BaseCard.vue'
 import EditTask from './components/TaskAction/EditTask.vue'
-
+import VueAxios from 'vue-axios'
+import axios from 'axios'
 const app=createApp(App)
 
 app.component('base-button',BaseButton)
@@ -23,4 +24,5 @@ const router=createRouter({
     ]
 })
 app.use(router)
+app.use(VueAxios,axios)
 app.mount('#app')

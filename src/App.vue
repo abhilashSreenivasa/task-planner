@@ -10,22 +10,41 @@
 import TheNavbar from './components/nav/TheNavbar.vue'
 
 export default{
+  created(){
+    this.getDbData();
+  },
+  updated(){
+    this.getDbData()
+  },
 components:{
   TheNavbar
 },
 data(){
   return{
-   tasks:[
-     {taskId:1,taskName:'eat',desc:"Dont forget to eat"},
-     {taskId:2,taskName:'code',desc:"An hour of coding"}
-   ]
+   tasks:[]
   }
 },
 provide(){
   return{
     tasks:this.tasks
   }
+},
+methods:{
+   getDbData(){
+      this.axios.get('https://task-planner-9bd41-default-rtdb.firebaseio.com/tasks.json')
+                    .then((response)=> {
+                        console.log("Success biyatch")
+                      
+                        var entry=response.data
+                        for(var task in entry)
+                        this.tasks.push(entry[task])
+                    })
+                    .catch((error)=> {
+                         console.log(error);
+                    })
+  }
 }
+
 
 }
 </script>
