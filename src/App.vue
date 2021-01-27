@@ -10,12 +10,12 @@
 import TheNavbar from './components/nav/TheNavbar.vue'
 
 export default{
+
   created(){
+    console.log('mounting')
     this.getDbData();
   },
-  updated(){
-    this.getDbData()
-  },
+
 components:{
   TheNavbar
 },
@@ -26,17 +26,17 @@ data(){
 },
 provide(){
   return{
-    tasks:this.tasks
+    tasks:this.tasks,
+    getdbData:this.getDbData
   }
 },
 methods:{
    getDbData(){
+      //this.taskArr=[]
       this.axios.get('https://task-planner-9bd41-default-rtdb.firebaseio.com/tasks.json')
-                    .then((response)=> {
-                        console.log("Success biyatch")
-                      
+                    .then((response)=> { 
                         var entry=response.data
-                        for(var task in entry)
+                        for(let task in entry)
                         this.tasks.push(entry[task])
                     })
                     .catch((error)=> {

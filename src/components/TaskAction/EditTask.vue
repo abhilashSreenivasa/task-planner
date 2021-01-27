@@ -46,9 +46,9 @@ export default {
                         if(list[task].taskId==id)
                             dbId=task
                         }
-                        
+                        console.log(dbId)
+                    
                     }).then(()=>{  //larger then starts.
-console.log("this is list:"+list);console.log("this is lbid:"+dbId)
                                         this.axios.put(`https://task-planner-9bd41-default-rtdb.firebaseio.com/tasks.json/${list[dbId]}`, editedObj)
                                         .then((response)=> {
                                         console.log(response);
@@ -56,19 +56,16 @@ console.log("this is list:"+list);console.log("this is lbid:"+dbId)
                                         .catch((error)=> {
                                        console.log(error);
                      })
-                    
-
                     })//larger then
                     .catch((error)=> {
                          console.log(error);
                     })
           // this.tasks[idx]=editedObj;
            this.$emit('clearEdit')
-            this.$router.push('/tasks') 
+            this.$router.push('/tasks')
     }
 
     }
-    
 }
 </script>
 <style>

@@ -18,7 +18,7 @@
 <script>
 
 export default {
-    inject:['tasks'],
+    inject:['tasks','getdbData'],
     data(){
         return {
             taskName:'',
@@ -34,13 +34,15 @@ export default {
             }
 
             this.axios.post('https://task-planner-9bd41-default-rtdb.firebaseio.com/tasks.json', newTask)
-                    .then((response)=> {
-                        console.log(response);
+                    .then(()=> {
+                      this.tasks.push(newTask)
+                      this.$router.push('/tasks') 
                     })
                     .catch((error)=> {
                          console.log(error);
+                         this.$router.push('/tasks') 
                     })
-                    this.$router.push('/Tasks') 
+                    
         }
     }
 

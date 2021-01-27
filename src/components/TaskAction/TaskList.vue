@@ -34,7 +34,12 @@ export default {
     inject:['tasks'],
 
     created(){
-        this.axios.get('https://task-planner-9bd41-default-rtdb.firebaseio.com/tasks.json')
+        this.getData()
+    },
+   
+    methods:{
+       getData(){
+           this.axios.get('https://task-planner-9bd41-default-rtdb.firebaseio.com/tasks.json')
                     .then((response)=> {
                         var a=[];
                         var entry=response.data
@@ -44,11 +49,9 @@ export default {
                     .catch((error)=> {
                          console.log(error);
                     })
-    },
-  
-   
-    methods:{
-       
+
+       }
+        ,
        editTask(id){
            this.editId=id
        },
@@ -56,8 +59,34 @@ export default {
            this.editId='';
        },
        deleteTask(id){
-           const idx=this.tasks.findIndex((task)=>task.taskId===id)
-           this.tasks.splice(idx,1);
+           var dbId=null;
+            var list=null;
+                 this.axios.get('https://task-planner-9bd41-default-rtdb.firebaseio.com/tasks.json')
+                    .then((response)=> {
+                        list=response.data
+                        for(let task in list){
+                        if(list[task].taskId==id)
+                            dbId=task
+                            
+                        }
+                       // console.log(dbId)
+                    
+                    }).then(()=>{  //larger then starts.
+                                        this.axios.delete(`https://task-planner-9bd41-default-rtdb.firebaseio.com/tasks/${dbId}.json`
+                    
+                                        )
+                                        .then(()=> {
+                                        const idx=this.tasks.findIndex(task=>task.taskId==id)
+                                        this.tasks.splice(idx,1)
+                                        
+                                        })
+                                        .catch((error)=> {
+                                       console.log(error);
+                     })
+                    })//larger then
+                    .catch((error)=> {
+                         console.log(error);
+                    })
        }
     }
   
