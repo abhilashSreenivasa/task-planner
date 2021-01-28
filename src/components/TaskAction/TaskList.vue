@@ -32,7 +32,6 @@ export default {
         }
     },
     inject:['tasks'],
-
     created(){
         this.getData()
     },
@@ -49,7 +48,6 @@ export default {
                     .catch((error)=> {
                          console.log(error);
                     })
-
        }
         ,
        editTask(id){
@@ -90,11 +88,8 @@ export default {
        }
     }
   
-
 }
-
 </script>
 
 <style scoped>
-
 </style>
