@@ -22,3 +22,6 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+dcs
+
+Project link: https://task-planner-9bd41.web.app/tasks
